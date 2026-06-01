@@ -1,71 +1,45 @@
 # Rover-Card
 
-Lovelace card for **[Rover](https://github.com/BotoVed/Rover)** — Home Assistant remote control over LoRa, when the internet is unavailable.
+<p align="center">
+  <img src="brand/icon.png" alt="Rover" width="180" />
+</p>
 
-## What it shows
+**Lovelace-карточка для системы [Rover](https://github.com/BotoVed/Rover)** — дистанционное управление умным домом через LoRa, когда интернет недоступен.
 
-- Home name and number of connected fronts (online/total).
-- Live packet flow — last 200 incoming and outgoing packets with click-to-expand details.
-- Admin panel — QR onboarding for new fronts, list of registered users. Password-protected.
+🧩 Это один из трёх компонентов экосистемы Rover. Полная картина и документация — в [главном репозитории](https://github.com/BotoVed/Rover).
 
-Device control itself is not in this card — that's what native HA cards are for. Rover Card exists to show **what's happening in the Rover radio network** that you can't see otherwise.
+---
 
-## Installation
+## Что это
 
-### Via HACS (recommended)
+Карточка для дашборда Home Assistant, показывающая, что происходит в Rover-радиосети:
+
+- Имя дома и количество подключённых телефонов (онлайн / всего).
+- Живой поток пакетов — последние 200 входящих и исходящих, с раскрытием подробностей по клику.
+- Админ-панель с QR-онбордингом новых клиентов (под паролем).
+
+Управление самими устройствами в карточке нет — для этого есть нативные карточки HA. Rover-Card отвечает за то, **чего не видно стандартными средствами** — состояние самой радиосети.
+
+## Установка
+
+### Через HACS
 1. HACS → Frontend → ⋮ → Custom repositories.
-2. Add `https://github.com/BotoVed/Rover-Card` as **Lovelace** type.
-3. Install **Rover Card**.
-4. Reload the Lovelace page.
+2. Добавить `https://github.com/BotoVed/Rover-Card` как **Dashboard**.
+3. Установить **Rover Card**, перезагрузить страницу.
 
-### Manual
-1. Download `rover-card.js` from the [latest release](https://github.com/BotoVed/Rover-Card/releases).
-2. Drop it into `<HA_config>/www/community/rover-card/`.
-3. Add to Lovelace resources:
-   ```yaml
-   resources:
-     - url: /hacsfiles/rover-card/rover-card.js
-       type: module
-   ```
-4. Reload the Lovelace page.
-
-## Usage
-
-Add to your dashboard:
+Добавить на дашборд:
 ```yaml
 type: custom:rover-card
 ```
 
-Optional parameters:
-```yaml
-type: custom:rover-card
-title: Rover Status
-max_packets: 200
-show_admin: true
-```
+### Вручную
+Скачать `rover-card.js` из [последнего релиза](https://github.com/BotoVed/Rover-Card/releases), положить в `<HA_config>/www/community/rover-card/`, добавить в resources Lovelace.
 
-## Build from source
+## Связанные репозитории
 
-```bash
-npm install
-npm run build
-# → dist/rover-card.js
-```
+- **[Rover](https://github.com/BotoVed/Rover)** — плагин Home Assistant (бэк) + общая документация
+- **[Rover-App](https://github.com/BotoVed/Rover-App)** — мобильное приложение Android
 
-## Documentation
-
-Common documents live in the main Rover repository:
-- **[SPEC.md](https://github.com/BotoVed/Rover/blob/main/SPEC.md)** — protocol specification (see §10 for card details)
-- **[DECISIONS.md](https://github.com/BotoVed/Rover/blob/main/DECISIONS.md)** — architectural decisions
-
-Card-specific docs in this repository:
-- **[AGENT.md](./AGENT.md)** — instructions for AI agents working on the code
-
-## Related
-
-- **[Rover](https://github.com/BotoVed/Rover)** — Home Assistant integration (back)
-- **[Rover-App](https://github.com/BotoVed/Rover-App)** — Android application
-
-## License
+## Лицензия
 
 [GPL v3](https://github.com/BotoVed/Rover/blob/main/LICENSE)
